@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Mirrored from de-iitr.vlabs.ac.in/exp/multiplexer-demultiplexer/simulation/4x1/1 to 4 demux.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Dec 2021 10:04:21 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="EMF Generation">
+  <meta name="keywords" content="HTML,CSS,XML,JavaScript">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <title>1 TO 4 DEMUX</title>
+  <link rel="stylesheet" type="text/css" href="https://de-iitr.vlabs.ac.in/List%20of%20experiments.html">
+  <script src="https://de-iitr.vlabs.ac.in/List%20of%20experiments.html"></script>
+  <script src="https://de-iitr.vlabs.ac.in/List%20of%20experiments.html"></script>
+  <style type="text/css">
+  body 
+  {
+    background-color:  #ECEFF4;
+    
+            -moz-transform: scale(0.85, 0.85); /* Moz-browsers */
+    zoom: 0.85; /* Other non-webkit browsers */
+    zoom: 85%; /* Webkit browsers */
+        
+  }
+
+  h1
+  {
+    color: maroon;
+  } 
+  #wrapper
+  {
+    width:100%;
+  }
+ 
+  .dropbtn
+  {
+    background-color: #3385ff;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  .dropbtn:hover, .dropbtn:focus
+  {
+    background-color: blue;
+  }
+  .dropdown
+  {
+    position: relative;
+    display: inline-block;
+  }
+  .dropdown-content
+  {
+    display: none;
+    position: relative;
+    background-color: lightblue ;
+    min-width: 750px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  .dropdown-content a 
+  {
+    color: navy;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  .dropdown a:hover 
+  {
+    background-color: mistyrose;
+  }
+  .show 
+  {
+    display:block;
+  }
+  #kit
+  {
+    background-color: ;
+    height: 500px;
+    top: 200px;
+    left: 100px;
+    margin: 41px;
+
+  }
+
+  .v_img {
+  z-index: 2;
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  left: 45%;
+  bottom: 250px;
+  transition: transform 2s linear;
+  transform-origin: 29% 70%;
+  transform-style: preserve-3D;
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+  </style>
+  </head>
+  <body outline:black;>
+  </br>
+  <div class="dropdown" style="left:40px; top:-19px;">
+    <button onclick="dropdown()" class="dropbtn">INSTRUCTIONS
+    </button>
+     <div id="myDropdown" class="dropdown-content">
+      <a href="#home">  
+                    <b>1) Connect the Supply(+5V) to the IC.(on Power Supply Switch)</b><br/><br/>
+                    <b>2) Press the switches for inputs "SELECT LINE(S0)" and "SELECT LINE(S1)".</b><br/><br/>
+                    <b>The switch in ON state is <img src="switchon.png" width="50" height="30" > and the switch in OFF state is <img src="switchoff.png" width="50" height="30" > .</b><br/><br/>
+                    <b>3) Click "DATA (D)" switch ON <img src="switchon.png" width="50" height="30" > For Input Data as "1", and the switch OFF <img src="switchoff.png" width="50" height="30"> For Input Data as "0".</b><br/><br/>
+      </a>
+    </div>
+</div>
+<div id="wrapper" style="position:absolute; border: 2px solid #3385ff; top:69px;width:1300px;height:920px;left:20px">
+  <div style="position:absolute; font-size:13px;background-color: #3385ff;top:0px;left:0px;width:410px; height:40px;font-weight: bold;">
+    <p style="text-align:center; color:white;font-family: Verdana"> 
+      <b>Experiment to perform logic of 1 to 4 DEMUX on kit</b>
+    </p>
+  </div>
+  <div id="kit" style="left:50px;top:200px;">
+  <form id="myForm">
+
+   <div style="position:absolute;left:30px;top:360px;" >
+    <table width="0%" border=0>
+     <tr>
+      <td>
+        <p style="color:blue;font-size: 11px;" align="center">SELECT LINE S0</p>
+          <img id="A" onclick="changeImage()" src="switchoff.png" width="70" height="40">
+    </div>
+      </td>
+    </tr>
+      <td>
+        <p style="color:blue;font-size: 11px;" align="center">SELECT LINE S1</p>
+
+        <img id="B" onclick="changeImage1()" src="switchoff.png" width="70" height="40">
+          
+</td>
+       </tr>
+     </table>
+   </div>
+
+
+   </br></br></br></br></br></br></br></br></br></br></br></br>
+    <div id="tblwrap" style="position:absolute; border: 2px solid #3385ff; top:560px;width:402px;height:300px;left:5px">
+                <div style="position:absolute;font-size:16px;background-color:#3385ff;top:0px;left:0px; width:400px;height:50px;font-weight: bold;"><p style="color:white"> 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TRUTH TABLE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style=" background: #27d447 !important;height:20px; width:65px;" id = "button" type = "button" value = "ADD" onclick="add()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input style=" background: #27d447 !important;height:20px; width:65px;" id = "button" type = "button" value = "PRINT" onclick="print()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+                <div id="table" style="background-color:  #ECEFF4;; position:absolute; top:50px;width:402px;height:250px;left:0px; overflow-y: auto;">
+                    <table id="mytable" width="400" border="1" style="text-align:center" >
+                        <tr>
+                            <th width="25">Serial No.</th>
+                            <th width="25">DATA</th>
+                            <th width="25">S0</th>
+                            <th width="25">S1</th>
+                            <th width="25">Yo</th>
+                             <th width="25">Y1</th>
+                              <th width="25">Y2</th>
+                               <th width="25">Y3</th>
+                          </tr>
+                      </table>
+                    </form>
+                </div>
+    </div>
+
+
+<!--Dots-->
+   <!--vcc-->
+<!--<img style="position: absolute;left: 245.5px;top:78px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">-->
+<img style="position: absolute;left: 540.5px;top:78px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 835.5px;top:78px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+
+<!--grd-->
+<img style="position: absolute;left: 432.5px;top:352px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 731.5px;top:352px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 1039.5px;top:352px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+
+<!--switch b-->
+<img style="position: absolute;left: 244.5px;top:412px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 495px;top:412px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 838.5px;top:412px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+
+<img style="position: absolute;left: 274.5px;top:375px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 540.5px;top:375px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 638.5px;top:375px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+
+<!--switch c-->
+<img style="position: absolute;left: 306px;top:495px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 670px;top:495px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 869.5px;top:495px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+
+<img style="position: absolute;left: 340px;top:387px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 570.5px;top:387px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 778.5px;top:387px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+
+<!--switch a-->
+<img style="position: absolute;left: 570px;top:44px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 640px;top:44px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 795.5px;top:44px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 870.5px;top:44px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+
+<img style="position: absolute;left: 340px;top:387px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 570.5px;top:387px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+<img style="position: absolute;left: 778.5px;top:387px;"id="myImage1" src="red.png" style="width:5px" width="7" height="7">
+
+
+
+                                           <!--Supply = +5V-->
+<p style="position: absolute;left: 150px; top:40px;"><b>V<sub>cc</sub>: +5V</b></p>
+<img style="position: absolute;left: 140px;top:79px;"id="myImage1" src="redn.jpg" style="width:5px" width="700" height="2">
+
+
+<img style="position: absolute;left: 249px;top:80px;"id="myImage2" src="redn.jpg" style="width:5px" width="2" height="43">
+<img style="position: absolute;left: 544px;top:80px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="38">
+<img style="position: absolute;left: 839px;top:80px;"id="myImage4" src="redn.jpg" style="width:5px" width="2" height="32">
+
+
+                                              <!--GND-->
+<img style="position: absolute;left: 435px;top:355px;"id="myImage6" src="redn.jpg" style="width:5px" width="658" height="1.5">
+<img style="position: absolute;left: 435px;top:310px;"id="myImage2" src="redn.jpg" style="width:5px" width="2" height="46">
+<img style="position: absolute;left: 734px;top:322px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="34">
+<img style="position: absolute;left: 1042px;top:322px;"id="myImage4" src="redn.jpg" style="width:5px" width="2" height="35">
+<img style="position: absolute;left: 1091px;top:355px;"id="myImage4" src="redn.jpg" style="width:5px" width="2" height="36">
+
+
+
+
+                                            <!--INPUT-B-->
+
+<img style="position: absolute;left: 103px;top:415px;"id="myImage7" src="redn.jpg" style="width:5px" width="740" height="2">
+<img style="position: absolute;left: 497px;top:109px;"id="myImage8" src="redn.jpg" style="width:5px" width="175" height="2">
+<img style="position: absolute;left: 497px;top:110px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="306">
+<img style="position: absolute;left: 247px;top:308px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="105">
+<img style="position: absolute;left: 842px;top:302px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="112">
+<img style="position: absolute;left: 670px;top:110px;"id="myImage2" src="redn.jpg" style="width:5px" width="2" height="19">
+
+<img style="position: absolute;left: 277px;top:377px;"id="myImage6" src="redn.jpg" style="width:5px" width="366" height="1.5">
+<img style="position: absolute;left: 277px;top:310px;"id="myImage2" src="redn.jpg" style="width:5px" width="2" height="69">
+<img style="position: absolute;left: 544px;top:302px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="76">
+<img style="position: absolute;left: 643px;top:302px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="77">
+
+<img style="position: absolute;left: 1042px;top:324px;"id="myImage4" src="redn.jpg" style="width:5px" width="2" height="33">
+<img style="position: absolute;left: 1091px;top:355px;"id="myImage4" src="redn.jpg" style="width:5px" width="2" height="36">
+
+
+<!--<img  class="v_img" id="vimage" src="redn.png" style="position: absolute;left: 224px; top:80px;" width="30" height="2">-->
+<!--<img  class="v_img" id="vimage" src="redn.png" style="position: absolute;left: 224px; top:80px;" width="30" height="2">-->
+
+
+                                            <!--INPUT-C-->
+<img style="position: absolute;left: 102px;top:497px;"id="myImage8" src="redn.jpg" style="width:5px" width="772" height="2">
+<img style="position: absolute;left: 309px;top:311px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="188">
+<img style="position: absolute;left: 874px;top:304px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="194">
+
+<img style="position: absolute;left: 344px;top:389px;"id="myImage6" src="redn.jpg" style="width:5px" width="440" height="1.5">
+<img style="position: absolute;left: 782px;top:110px;"id="myImage2" src="redn.jpg" style="width:5px" width="2" height="281">
+<img style="position: absolute;left: 704px;top:109px;"id="myImage6" src="redn.jpg" style="width:5px" width="80" height="1.5">
+<img style="position: absolute;left: 704px;top:110px;"id="myImage2" src="redn.jpg" style="width:5px" width="2" height="19">
+
+<img style="position: absolute;left: 342px;top:310px;"id="myImage2" src="redn.jpg" style="width:5px" width="2" height="81">
+<img style="position: absolute;left: 574px;top:302px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="88">
+<img style="position: absolute;left: 643px;top:302px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="77">
+
+<img style="position: absolute;left: 673px;top:303px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="195">
+
+
+<!--<img  class="v_img" id="vimage" src="redn.png" style="position: absolute;left: 224px; top:80px;" width="60" height="2">-->
+<!--<img  class="v_img" id="vimage" src="redn.png" style="position: absolute;left: 224px; top:80px;" width="60" height="2">-->
+
+                                                              <!--INPUT-C-->
+<img style="position: absolute;left: 572px;top:46px;"id="myImage8" src="redn.jpg" style="width:5px" width="672" height="2">
+<img style="position: absolute;left: 572px;top:46px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="80">
+<img style="position: absolute;left: 642px;top:46px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="80">
+<img style="position: absolute;left: 874px;top:46px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="80">
+
+<img style="position: absolute;left: 799px;top:46px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="356">
+<img style="position: absolute;left: 609px;top:401px;"id="myImage8" src="redn.jpg" style="width:5px" width="192" height="2">
+<img style="position: absolute;left: 607px;top:301px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="102">
+
+<img style="position: absolute;left: 874px;top:304px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="194">      
+
+                                          
+                                             <!--connections-->
+<img style="position: absolute;left: 477px;top:99px;"id="myImage9" src="redn.jpg" style="width:5px" width="133" height="3">
+<img style="position: absolute;left: 607px;top:99px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="29">
+<img style="position: absolute;left: 477px;top:99px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="500">
+
+<img style="position: absolute;left: 702px;top:302px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="233">
+<img style="position: absolute;left: 605px;top:533px;"id="myImage9" src="redn.jpg" style="width:5px" width="100" height="3">
+<img style="position: absolute;left: 605px;top:533px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="63">
+
+<img style="position: absolute;left: 791px;top:92px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="500">
+<img style="position: absolute;left: 739px;top:92px;"id="myImage9" src="redn.jpg" style="width:5px" width="53" height="3">
+<img style="position: absolute;left: 739px;top:92px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="36">
+
+<img style="position: absolute;left: 1117px;top:92px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="440">
+<img style="position: absolute;left: 909px;top:92px;"id="myImage9" src="redn.jpg" style="width:5px" width="208" height="3">
+<img style="position: absolute;left: 909px;top:92px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="36">
+<img style="position: absolute;left: 954px;top:532px;"id="myImage9" src="redn.jpg" style="width:5px" width="166" height="3">
+<img style="position: absolute;left: 954px;top:532px;"id="myImage3" src="redn.jpg" style="width:5px" width="3" height="58">
+
+<img style="position: absolute;left: 1150px;top:46px;"id="myImage3" src="redn.jpg" style="width:5px" width="2" height="45">
+
+<!--<p style="position: absolute;left: 150px; top:40px;"><b>V<sub>cc</sub>: +5V</b></p>
+<p style="position: absolute; left: 880px; top: 520px"><b>R<sub>1</sub>: 330 ohm</b></p>
+<p style="position: absolute;left: 1077px; top: 520px"><b>R<sub>2</sub>: 330 ohm</b></p>
+<p style="position: absolute; left: 875px; top: 570px"><b>Difference</b></p>
+<p style="position: absolute; left: 875px; top: 614px"><b>Led 1</b></p>
+<p style="position: absolute; left: 1150px; top: 614px"><b>Led 2</b></p>
+<p style="position: absolute;left: 1077px; top: 570px"><b>Borrow</b></p>-->
+
+
+<!--<p style="position: absolute;left: 360px; top: 310px"><b>IC: 7486(XOR Gate)</b></p>-->
+<!--label-->
+<p style="position: absolute;left:1045px; top: 430px"><b>GND</b></p>
+<p style="position: absolute;left:460px; top: 695px"><b>GND</b></p>
+<p style="position: absolute;left:430px; top: 709px"><b>OUTPUT(Yo)</b></p>
+
+
+<p style="position: absolute;left:590px; top: 695px"><b>GND</b></p>
+<p style="position: absolute;left:560px; top: 709px"><b>OUTPUT(Y1)</b></p>
+<p style="position: absolute;left:509px; top: 609px"><b>R1:330 ohm</b></p>
+<p style="position: absolute;left:544px; top: 639px"><b>LED 1</b></p>
+
+<p style="position: absolute;left:775px; top: 695px"><b>GND</b></p>
+<p style="position: absolute;left:750px; top: 709px"><b>OUTPUT(Y2)</b></p>
+<p style="position: absolute;left:677px; top: 609px"><b>R2:330 ohm</b></p>
+<p style="position: absolute;left:685px; top: 639px"><b>LED 2</b></p>
+
+<p style="position: absolute;left:940px; top: 695px"><b>GND</b></p>
+<p style="position: absolute;left:922px; top: 709px"><b>OUTPUT(Y3)</b></p>
+<p style="position: absolute;left:855px; top: 609px"><b>R3:330 ohm</b></p>
+<p style="position: absolute;left:885px; top: 639px"><b>LED 3</b></p>
+
+<p style="position: absolute;left:940px; top: 695px"><b>GND</b></p>
+<p style="position: absolute;left:922px; top: 709px"><b>OUTPUT(Y3)</b></p>
+<p style="position: absolute;left:1005px; top: 609px"><b>R4:330 ohm</b></p>
+<p style="position: absolute;left:1005px; top: 639px"><b>LED 4</b></p>
+
+
+
+<p style="position: absolute;left:1132px; top: 190px"><b>GND</b></p>
+<p style="position: absolute;left:1200px; top: 139px"><b>R1:330 ohm</b></p>
+<p style="position: absolute;left:1200px; top: 155px"><b>LED</b></p>
+
+
+<div style="position:absolute;left:200px;top:100px;">
+<table width="0%" border="0"> 
+<tr>
+      <td>
+        <img src="not.png"  width="275" height="230"> 
+       </td>
+       </tr>
+</table>
+</div>
+<div style="position:absolute;left:500px;top:100px;">
+<table width="0%" border="0"> 
+<tr>
+      <td>
+        <img src="74113inputand.png"  width="275" height="230"> 
+       </td>
+       </tr>
+</table>
+</div>
+<div style="position:absolute;left:800px;top:100px;">
+<table width="0%" border="0"> 
+<tr>
+      <td>
+        <img src="74113inputand.png"  width="275" height="230"> 
+       </td>
+       </tr>
+</table>
+</div>
+<div style="position:absolute;left:880px;top:180px;">
+  <tr>
+      <td>
+        <p style="position: absolute;left: 35px; top: 12px"><b>7411(ANDGate)</b></p>
+      </td>
+  </tr>
+</div>
+<div style="position:absolute;left:580px;top:180px;">
+  <tr>
+      <td>
+        <p style="position: absolute;left: 35px; top: 12px"><b>7411(ANDGate)</b></p>
+      </td>
+  </tr>
+</div>
+<div style="position:absolute;left:1074.5px;top:387px;">
+<table width="0%" border="0"> 
+<tr>
+      <td>
+        
+        <img src="grd.png"  width="30" height="50">  
+       </td>
+       </tr>
+</table>
+</div>
+<div style="position:absolute;left:69px;top:26px;" >
+    <table width="0%" border=0>
+     <tr>
+      <td>
+        <p style="color:blue;font-size: 11px;" align="center">Power Supply</p>
+          <img id="C" onclick="changeImage3()" src="switchoff.png" width="70" height="40">
+    </div>
+    <!--input a-->
+  <div style="position:absolute;left:1130px;top:-40px;" >
+    <table width="0%" border=0>
+     <tr>
+      <td>
+        <p style="color:blue;font-size: 11px;" align="center">DATA(D)</p>
+          <img id="G" onclick="changeImage4()" src="switchff1.png" width="50" height="60">
+    </div> 
+
+    <div style="position:absolute;left:-60px;top:94px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="ress.png" width="20" height="60">
+    </div> 
+    <div style="position:absolute;left:-52px;top:120px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img id="z" src="offg.png" width="50" height="70">
+    </div>
+    <div style="position:absolute;left:-66px;top:160px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="grd.png" width="30" height="40">
+    </div>
+
+    <!--output 1-->
+    <div style="position:absolute;left:-733px;top:600px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="ress.png" width="20" height="60">
+    </div> 
+    <div style="position:absolute;left:-729px;top:627px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img id="out1" src="off.png" width="50" height="70">
+    </div>
+    <div style="position:absolute;left:-739px;top:668px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="grd.png" width="30" height="40">
+    </div>
+    
+    <!--output 2-->
+    <div style="position:absolute;left:-604px;top:598px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="ress.png" width="20" height="60">
+    </div> 
+    <div style="position:absolute;left:-599px;top:625px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img id="out2" src="off.png" width="50" height="70">
+    </div>
+    <div style="position:absolute;left:-609px;top:665px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="grd.png" width="30" height="40">
+    </div>
+
+     <!--output 3-->
+    <div style="position:absolute;left:-419px;top:593px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="ress.png" width="20" height="60">
+    </div> 
+    <div style="position:absolute;left:-413px;top:619px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img id="out3" src="off.png" width="50" height="70">
+    </div>
+    <div style="position:absolute;left:-423px;top:660px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img  src="grd.png" width="30" height="40">
+    </div>
+    <!--output 4-->
+    <div style="position:absolute;left:-255px;top:592px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="ress.png" width="20" height="60">
+    </div> 
+    <div style="position:absolute;left:-250px;top:619px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img id="out4" src="off.png" width="50" height="70">
+    </div>
+    <div style="position:absolute;left:-259px;top:660px;">
+        <p style="color:blue;font-size: 11px;" align="center"></p>
+          <img src="grd.png" width="30" height="40">
+    </div>
+<script>
+
+function dropdown() 
+{
+    document.getElementById("myDropdown").classList.toggle("show");
+}
+
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+function changeImage3() 
+{
+    var image3 = document.getElementById("C");
+    if (image3.src.match("switchoff"))
+     {
+       
+       image3.src = "switchon.png";
+      
+      }
+       else
+        image3.src = "switchoff.png";
+      document.getElementById("G").src="switchff1.png";
+      document.getElementById("z").src="offg.png";
+      document.getElementById("out1").src="off.png";
+       document.getElementById("out2").src="off.png";
+       document.getElementById("out3").src="off.png";
+       document.getElementById("out4").src="off.png";   
+
+}
+function changeImage4() 
+{   var image3 = document.getElementById("C");
+    var image4 = document.getElementById("G");
+    if(image3.src.match("switchon"))
+    {
+    if (image4.src.match("switchff1") )
+     {
+       image4.src = "switchoff1.png";
+        Glow1();
+        Glow();
+      }
+       else
+        image4.src = "switchff1.png";
+        Glow1();
+        Glow();
+    }
+    if(image3.src.match("switchoff"))
+      {
+        alert("On Power Supply");
+
+      }
+}
+function changeImage() 
+{   
+  var image3 = document.getElementById("C");
+    var image1 = document.getElementById("A");
+    if(image3.src.match("switchon"))
+    {
+    if (image1.src.match("switchoff"))
+     {
+       
+       image1.src = "switchon.png";  
+        Glow();
+      }
+      else
+        image1.src = "switchoff.png";
+        Glow();
+      }
+      if(image3.src.match("switchoff"))
+      {
+        alert("On Power Supply");
+      }
+
+}
+function changeImage1() 
+{  
+    var image3 = document.getElementById("C");
+    var image2 = document.getElementById("B");
+    if(image3.src.match("switchon"))
+    {
+    if (image2.src.match("switchoff"))
+     {
+       
+       image2.src = "switchon.png";
+        Glow();
+      }
+       else
+        image2.src = "switchoff.png";
+        Glow();
+}    if(image3.src.match("switchoff"))
+      {
+        alert("On Power Supply");
+      }
+    }
+function Glow1()
+{
+    var image3=document.getElementById("C");
+    var d = document.getElementById("G");
+    if(d.src.match("switchff1"))
+    {
+       document.getElementById("z").src="offg.png";    
+    }
+    if(d.src.match("switchoff1"))
+    {
+       document.getElementById("z").src="ong.png";    
+    }
+
+}
+function Glow()
+{
+    var e = document.getElementById("A");
+    var f = document.getElementById("B");
+    var image4 = document.getElementById("G");
+ if(image4.src.match("switchoff1")){
+    if(e.src.match("switchoff")&& f.src.match("switchoff"))
+    {
+       document.getElementById("out1").src="on.png";
+       document.getElementById("out2").src="off.png";
+       document.getElementById("out3").src="off.png";
+       document.getElementById("out4").src="off.png";     
+    }
+    if(e.src.match("switchoff")&& f.src.match("switchon"))
+    {
+       document.getElementById("out1").src="off.png";
+       document.getElementById("out2").src="on.png";
+       document.getElementById("out3").src="off.png";
+       document.getElementById("out4").src="off.png";       
+    }
+    if(e.src.match("switchon")&& f.src.match("switchoff"))
+    {
+       document.getElementById("out1").src="off.png";
+       document.getElementById("out2").src="off.png";
+       document.getElementById("out3").src="on.png";
+       document.getElementById("out4").src="off.png";        
+    }
+    if(e.src.match("switchon")&& f.src.match("switchon"))
+    {
+       document.getElementById("out1").src="off.png";
+       document.getElementById("out2").src="off.png";
+       document.getElementById("out3").src="off.png";
+       document.getElementById("out4").src="on.png";        
+    }}
+    else{
+       document.getElementById("out1").src="off.png";
+       document.getElementById("out2").src="off.png";
+       document.getElementById("out3").src="off.png";
+       document.getElementById("out4").src="off.png";       
+    }
+
+  }
+
+  var n=1;
+  var l="D";
+  var p=0;
+  var q=0;
+function add()
+{    var image4 = document.getElementById("G");
+    var image3 = document.getElementById("C");
+    var e = document.getElementById("A");
+    var f = document.getElementById("B");
+    if(image3.src.match("switchon"))
+{
+     if(image4.src.match("switchoff1"))
+     {
+   if(e.src.match("switchoff") && f.src.match("switchoff"))
+    {
+      a="D=1";
+      p=q=0;
+      b=c=d=0;
+    }
+     if(e.src.match("switchoff") && f.src.match("switchon"))
+    {
+      a=0;
+      b="D=1";
+      p=0;q=1;
+      c=0;
+      d=0;
+    }
+      if(e.src.match("switchon") && f.src.match("switchoff"))
+    {
+      a=0;c="D=1";
+      p=1;q=0;
+      b=0;d=0;
+    }
+      if(e.src.match("switchon") && f.src.match("switchon"))
+    {
+      a=b=0;
+      c=0;
+      p=q=1;
+      d="D=1";
+    }}
+    if(image4.src.match("switchff1"))
+     {
+   if(e.src.match("switchoff") && f.src.match("switchoff"))
+    {
+      a="D=0";
+      p=q=0;
+      b=c=d=0;
+    }
+     if(e.src.match("switchoff") && f.src.match("switchon"))
+    {
+      a=0;
+      b="D=0";
+      p=0;q=1;
+      c=0;
+      d=0;
+    }
+      if(e.src.match("switchon") && f.src.match("switchoff"))
+    {
+      a=0;c="D=0";
+      p=1;q=0;
+      b=0;d=0;
+    }
+      if(e.src.match("switchon") && f.src.match("switchon"))
+    {
+      a=b=0;
+      c=0;
+      p=q=1;
+      d="D=0";
+    }}
+
+                    var table = document.getElementById("mytable");
+                    // Create an empty <tr> element and add it to the 1st position of the table:
+                    var row = table.insertRow(-1);
+                    // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                    var cell1 = row.insertCell(0);
+                    var cell2 = row.insertCell(1);
+                    var cell3 = row.insertCell(2);
+                    var cell4 = row.insertCell(3);
+                    var cell5 = row.insertCell(4);
+                    var cell6 = row.insertCell(5);
+                    var cell7 = row.insertCell(6);
+                    var cell8 = row.insertCell(7);
+
+                    cell1.innerHTML = n++;
+                    cell2.innerHTML = l;
+                    cell3.innerHTML = p;
+                    cell4.innerHTML = q;
+                    cell5.innerHTML = a;
+                    cell6.innerHTML = b;
+                    cell7.innerHTML = c;
+                    cell8.innerHTML = d;
+
+}
+if(image3.src.match("switchoff"))
+      {
+        alert("On Power Supply");
+      }
+
+}
+  
+</script>
+</div>
+</div>
+</form>
+</body>
+
+<!-- Mirrored from de-iitr.vlabs.ac.in/exp/multiplexer-demultiplexer/simulation/4x1/1 to 4 demux.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 16 Dec 2021 10:04:23 GMT -->
+</html>
