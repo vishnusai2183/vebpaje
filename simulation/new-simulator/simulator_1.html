@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="This webpage is for simulator one">
+    <meta name="keywords" content="dds, dds-lab, nitk-dds">
+    <meta name="author" content="Group-12">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== CSS ======  -->
+    <link rel="stylesheet" href="output/tailwind.css">
+
+    <!-- ===== Title ===== -->
+    <title>Simulator One - Group 9</title>
+</head>
+
+<body class="h-screen bg-gray-100">
+
+    <!-- ===== Heading ===== -->
+    <div class="h-16 bg-white shadow-lg flex items-center justify-center relative">
+        <h1 class="text-center font-semibold font-lora text-lg uppercase ">SA0 & SA1 Fault of Full Adder
+        </h1>
+
+    </div>
+
+    <!-- ===== Home ===== -->
+    <div class="relative w-full" style="height: calc(100vh - 4rem)">
+
+        <!-- ===== Input ===== -->
+        <div class="left-4 bg-white absolute shadow-lg rounded-xl"
+            style="width:48%; height: 90%; top: 50%; transform: translateY(-50%);">
+            <div class="h-full font-lora flex flex-col items-center justify-center">
+                <img class="w-3/6" src="./img/pic.jpeg">
+                <div class="mt-5">
+                    <input type="number" id="X" class="w-10 bg-green-200 text-center rounded-sm" placeholder="x" min="0"
+                        max="1">
+                    <input type="number" id="Y" class="w-10 bg-green-200 text-center rounded-sm" placeholder="y" min="0"
+                        max="1">
+                    <input type="number" id="Z" class="w-10 bg-green-200 text-center rounded-sm" placeholder="z" min="0"
+                        max="1">
+                </div>
+                <br>
+                <p>&emsp;
+                    <select name="fault" id="fault" style="vertical-align:left;margin:0px 10px; font-size: 20px;">
+                        <option value="None">None</option>
+                        <option value="SA0">SA0</option>
+                        <option value="SA1">SA1</option>
+                    </select>
+                    &emsp;
+                    <select name="wire" id="wire" style="vertical-align:centre;margin:0px 10px; font-size: 20px;">
+                        <option value="x">x</option>
+                        <option value="y">y</option>
+                        <option value="z">z</option>
+                        <option value="p">p</option>
+                        <option value="q">q</option>
+                        <option value="r">r</option>
+                    </select>
+                </p>
+
+
+
+
+
+                <br>
+                <button id="check-btn" onclick="out();"
+                    class="py-1 px-4 rounded-md text-gray-800 font-semibold bg-yellow-400 hover:bg-yellow-300">Check</button>
+                <br>
+                <b>
+                    <p id="textValue" style="font-size: 20px;">&emsp;Equaiton of fault detected = </p>
+                </b>
+
+
+
+            </div>
+
+        </div>
+
+        <!-- ===== Truth Table ===== -->
+        <div class="overflow-y-auto font-lora bg-white rounded-xl shadow-xl absolute right-4"
+            style="width:48%; height: 90%; top: 50%; transform: translateY(-50%)">
+
+            <div class="m-5">
+                <p class="text-center font-semibold mb-1">Truth Table</p>
+                <hr class="w-4/5 h-0.5 mx-auto bg-gray-300 mb-3">
+                <table id="section-to-print" class="w-full table border text-center">
+                    <tbody id="table-body">
+                        <tr>
+                            <th class="border border-gray-400">X</th>
+                            <th class="border border-gray-400">Y</th>
+                            <th class="border border-gray-400">Z</th>
+                            <th class="border border-gray-400">Original output(C)</th>
+                            <th class="border border-gray-400">Faulty Output(C')</th>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+<script>
+    function out() {
+        var w = document.getElementById("wire");
+        var f = document.getElementById("fault");
+        var X = document.getElementById("X").value;
+        var Y = document.getElementById("Y").value;
+        var Z = document.getElementById("Z").value;
+        var wireVal = w.options[w.selectedIndex].text;
+        var falutVal = f.options[f.selectedIndex].text;
+        var table = document.getElementsByTagName("table")[0];
+        var newRow = table.insertRow(table.rows.length);
+        var cel1 = newRow.insertCell(0);
+        var cel2 = newRow.insertCell(1);
+        var cel3 = newRow.insertCell(2);
+        var cel4 = newRow.insertCell(3);
+        var cel5 = newRow.insertCell(4);
+        document.getElementById("textValue").innerHTML = output(wireVal, falutVal);
+        cel1.innerHTML = X;
+        cel2.innerHTML = Y;
+        cel3.innerHTML = Z;
+        cel4.innerHTML = findP(X, Y, Z);
+        cel5.innerHTML = findNewP(wireVal, falutVal, X, Y, Z);
+    }
+    function output(w, f) {
+
+        if (f == "None") {
+            return "&emsp;Equaiton of fault detected = " + "xy+yz+zx";
+        }
+        else if (f == "SA0") {
+            if (w == "x") {
+                return "&emsp;Equaiton of fault detected = " + "yz";
+            }
+            else if (w == "y") {
+                return "&emsp;Equaiton of fault detected = " + "zx";
+            }
+            else if (w == "z") {
+                return "&emsp;Equaiton of fault detected = " + "xy";
+            }
+            else if (w == "p") {
+                return "&emsp;Equaiton of fault detected = " + "yz+zx";
+            }
+            else if (w == "r") {
+                return "&emsp;Equaiton of fault detected = " + "xy+zx";
+            }
+            else if (w == "q") {
+                return "&emsp;Equaiton of fault detected = " + "xy+zx";
+            }
+
+        }
+        else if (f == "SA1") {
+
+            if (w == "x") {
+                return "&emsp;Equaiton of fault detected = " + "y+z+yz";
+            }
+            else if (w == "y") {
+                return "&emsp;Equaiton of fault detected = " + "x+z+xz";
+            }
+            else if (w == "z") {
+                return "&emsp;Equaiton of fault detected = " + "x+y+xy";
+            }
+            else if (w == "p") {
+                return "&emsp;Equaiton of fault detected = " + "1+yz+zx";
+            }
+            else if (w == "q") {
+                return "&emsp;Equaiton of fault detected = " + "1+xy+yz";
+            }
+            else if (w == "r") {
+                return "&emsp;Equaiton of fault detected = " + "1+xy+zx";
+            }
+        }
+    }
+    function findP(x, y, z) {
+
+        return (x*y) ^ (y*z) ^ (z*x);
+    }
+
+    function findNewP(w, f, x, y, z) {
+        if (f == "None") {
+
+            return (x*y) ^ (y*z) ^ (z*x);
+        }
+        else if (f == "SA0") {
+            if (w == "x") {
+                return (y*z);
+            }
+            else if (w == "y") {
+                return (x * z);
+            }
+            else if (w == "z") {
+                return (x * y);
+            }
+            else if (w == "p") {
+                return (y*z)^(z*x);
+            }
+            else if (w == "r") {
+                return (x*y)^(z*x);
+            }
+            else if (w == "q") {
+                return (x*y)^(y*z);
+            }
+
+        }
+        else if (f == "SA1") {
+
+            if (w == "x") {
+                return y^z^(y*z);
+            }
+            else if (w == "y") {
+                return x^z^(x*z);
+            }
+            else if (w == "z") {
+                return x^y^(x*y);
+            }
+            else if (w == "p") {
+                return 1;
+            }
+            else if (w == "q") {
+                return 1;
+            }
+            else if (w == "r") {
+                return 1;
+            }
+        }
+    }
+
+
+
+
+</script>
+
+</html>

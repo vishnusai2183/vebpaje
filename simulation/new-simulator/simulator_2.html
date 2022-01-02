@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="This webpage is for simulator">
+    <meta name="keywords" content="dds, dds-lab, nitk-dds">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== CSS ======  -->
+    <link rel="stylesheet" href="./output/tailwind.css">
+
+    <!-- ===== Title ===== -->
+    <title>Fault Detector</title>
+</head>
+
+<body class="h-screen bg-gray-100">
+
+    <!-- ===== Heading ===== -->
+    <div class="h-16 bg-white shadow-lg flex items-center justify-center relative">
+        <h1 class="text-center font-semibold font-lora text-lg uppercase ">Fault Detector
+        </h1>
+    </div>
+
+    <!-- ===== Home ===== -->
+    <div class="relative w-full" style="height: calc(100vh - 4rem)">
+
+        <!-- ===== Input ===== -->
+        <div class="left-4 bg-white absolute shadow-lg rounded-xl"
+            style="width:48%; height: 90%; top: 50%; transform: translateY(-50%);">
+            <div class="h-full font-lora flex flex-col items-center justify-center">
+                <img class="w-4/6" src="./img/pic.jpeg">
+                <div class="mt-5">
+                    <input type="text" id="o" class="w-10 bg-green-200 text-center rounded-sm" placeholder="C">
+                </div>
+
+                <div class="text-center my-5">
+                    <input type="text" id="fo" class="w-10 bg-red-200 text-center rounded-sm" placeholder="C'">
+                </div>
+                <button id="check-btn"
+                    class="py-1 px-4 rounded-md text-gray-800 font-semibold bg-yellow-400 hover:bg-yellow-300">Check</button>
+            </div>
+        </div>
+
+        <!-- ===== Truth Table ===== -->
+        <div class="overflow-y-auto font-lora bg-white rounded-xl shadow-xl absolute right-4"
+            style="width:48%; height: 90%; top: 50%; transform: translateY(-50%)">
+
+            <div class="m-5">
+                <p class="text-center font-semibold mb-1">Truth Table</p>
+                <hr class="w-4/5 h-0.5 mx-auto bg-gray-300 mb-3">
+                <table class="w-full table border text-center">
+                    <tbody id="table-body">
+                        <tr>
+                            <th class="border border-gray-400">Expected Output</th>
+                            <th class="border border-gray-400">Final Output</th>
+                            <th rowspan="2" class="border border-gray-400">Expected Faults Positions</th>
+                        </tr>
+                        <tr>
+                            <td class="border border-gray-400">C</td>
+                            <td class="border border-gray-400">C'</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="./js/simulator_2.js"></script>
+</body>
+
+</html>
