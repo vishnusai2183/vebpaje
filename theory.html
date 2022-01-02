@@ -24,10 +24,10 @@
     <meta content="" name="description">
     <meta content="" name="author">
     
-    	<meta name="experiment-short-name" content="multiplexer-demultiplexer">
-    	<meta name="developer-institute" content="IITR">
-    	<meta name="learning-unit" content="IMPLEMENTATION OF 4X1 MULTIPLEXER AND 1X4 DEMULTIPLEXER USING LOGIC GATES.">
-    	<meta name="task-name" content="Theory">
+    <meta name="experiment-short-name" content="Carry function of full adder">
+    <meta name="developer-institute" content="NITK">
+    <meta name="learning-unit" content="Detection of both SA1 and SA0 faults.">
+    <meta name="task-name" content="Theory">
     
     <!-- For iPhone -->
     <meta name="msapplication-TileColor" content="#4076e0">
@@ -35,7 +35,7 @@
     <meta name="theme-color" content="#4076e0">
     <!-- Windows Phone -->
     <meta name="msapplication-navbutton-color" content="#4076e0">
-    <title>Virtual Labs</title>
+    <title>MINI PROJECT</title>
     <link rel="shortcut icon" href="assets/images/favicon.ico">
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../cdnjs.cloudflare.com/ajax/libs/github-markdown-css/4.0.0/github-markdown.min.css" integrity="sha512-Oy18vBnbSJkXTndr2n6lDMO5NN31UljR8e/ICzVPrGpSud4Gkckb8yUpqhKuUNoE+o9gAb4O/rAxxw1ojyUVzg==" crossorigin="anonymous">
@@ -242,37 +242,23 @@
           
             </div>
               <h3 id="introduction">Introduction</h3>
-          <p>The function of a multiplexer is to select the input of any ‘n’ input lines and feed that to one output line. The function of a de-multiplexer is to inverse the function of the multiplexer and the shortcut forms of the multiplexer. The de-multiplexers are mux and demux. Some multiplexers perform both multiplexing and de-multiplexing operations. <br><br></p>
-          <center><img src="images/1.png" width="325" height="210"><br><b>Figure-1:Block diagram of Multiplexer and De-multiplexer</b> <br></center>
-                
-            
-          ### 1) Multiplexer
-          Multiplexer is a device that has multiple inputs and a single line output. The select lines determine which input is connected to the output, and also to increase the amount of data that can be sent over a network within certain time. It is also called a data selector.<br>
+          <p>Fault is a logic level abstraction of a physical defect. It is used to describe the change in the logic function of a device caused by the defect. Fault abstractions reduce the number of conditions that must be considered in deriving tests. <br></p>
+          <p>Logical faults are used to represent physical faults. They simplify the fault analysis process and reduces the number of faults.<br></p>     
+          <p>A stuck-at fault (SAF) is a logic-level fault that mimics a manufacturing defect on a digital circuit. An SAF is of two types- stuck-at-0 (SA0) and stuck-at-1 (SA1) faults. Individual bit or signal on a wire of a logic gate is assumed to be stuck at Logical '1' or '0' if that bit or the signal is converted to logic-1 or logic-0 irrespective of its previous or assigned value.<br></p>  
+          <h3 id="introduction">Full Adder</h3>          
+          <p>Full adder is a digital circuit used to calculate the sum of three binary bits. Full adders are complex and difficult to implement when compared to half adders. Two of the three bits are same as before which are A, the augend bit and B, the addend bit. The additional third bit is carry bit from the previous stage and is called 'Carry' – in generally represented by CIN. It calculates the sum of three bits along with the carry. The output carry is called Carry – out and is represented by Carry OUT.</p>
+          <p>Full Adder is the adder which adds three inputs and produces two outputs. The first two inputs are A and B and the third input is an input carry as C-IN. The output carry is designated as C-OUT and the normal output is designated as S which is SUM<br></p>
+          <p>The truth table of the full adder is as shown below. The inputs are designated as A, B and Cin, while the S represents the sum output and the C represents the carry output.<br></p>
+          <center><img src="images/truth_table.png"> <br><b>Figure-1: Truth Table of Full Adder</b></center>
+          <br>
+          <p>The simplified boolean expressions for both sum and carry function are as follows :</p>   <br>   
+          <center><b>S = A’ B’ C-IN + A’ B C-IN’ + A B’ C-IN’ + A B C-IN</b><br><br><b>C = AB + BC + AC</b></center>  
+          <br>
+          <p>In the given question we are asked to find both stuck at 0 and stuck at 1 faults for only the carry function of Full Adder. The schematic diagram of carry function of full adder is as follows:<br><br><br></p>
+          <center><img src="images/fulladder-schematic.png" ><b><br>Figure-2: Schematic Diagram of Carry function of Full Adder</b><br><br></center><br>
           
-          <p>Multiplexers are classified into four types:</p>
-          <p>a) 2-1 multiplexer (1 select line)<br>
-          b) 4-1 multiplexer (2 select lines)<br>
-          c) 8-1 multiplexer(3 select lines)<br>
-          d) 16-1 multiplexer (4 select lines)</p>
-          <h4 id="11-4x1-multiplexer">1.1) 4x1 Multiplexer<br></h4>
-          <p>4x1 Multiplexer has four data inputs D0, D1, D2 &amp; D3, two selection lines S0 &amp; S1 and one output Y. The block diagram of 4x1 Multiplexer is shown in the following figure.One of these 4 inputs will be connected to the output based on the combination of inputs present at these two selection lines. Truth table of 4x1 Multiplexer is shown below.<br><br><br></p>
-          <center><img src="images/2.png" width="325" height="210"><b><br>Figure-2:Block diagram of 4x1 Multiplexer</b><br><br>
-           <img src="images/3.png" width="325" height="210"> <br><b>Figure-3:Truth table of 4x1 Multiplexer</b></center><b> </b><br>
-                
-            
-          ### 2) De-multiplexer
-          De-multiplexer is also a device with one input and multiple output lines. It is used to send a signal to one of the many devices. The main difference between a multiplexer and a de-multiplexer is that a multiplexer takes two or more signals and encodes them on a wire, whereas a de-multiplexer does reverse to what the multiplexer does.<br>
           
-          <p>De-multiplexer are classified into four types:<br></p>
-          <p>a)1-2 demultiplexer  (1 select line)<br>
-          b)1-4 demultiplexer  (2 select lines)<br>
-          c)1-8 demultiplexer  (3 select lines)<br>
-          d)1-16 demultiplexer (4 select lines)<br><br><br></p>
-          <h4 id="22-1x4-de-multiplexer">2.2) 1x4 De-multiplexer<br><br></h4>
-          <p>1x4 De-Multiplexer has one input Data(D), two selection lines, S0 &amp; S1 and four outputs Y0, Y1, Y2 &amp; Y3. The block diagram of 1x4 De-Multiplexer is shown in the following figure.<br><br></p>
-          <center><img src="images/4.png" width="325" height="210"><br><b>Figure-4:Block diagram of 1x4 De-Multiplexer</b><br><br>
-          <img src="images/5.png" width="425" height="210"> <br><b>Figure-5:Truth table of 1x4 De-Multiplexer</b><br></center>
-          
+         
           
           
           </div>
@@ -281,7 +267,7 @@
       <footer class="text-light pt-2 vlabs-footer d-flex flex-column">
     
         <div class="m-0 py-2 text-center" style="font-family: &quot;Open Sans&quot;, sans-serif; background: #212121;">
-                <a class="text-primary font-weight-bold" href="#"> Submitted by Group 12 </a>
+                <a class="text-primary font-weight-bold" href="details.html"> Submitted by Group 12 </a>
         </div>
       </footer>
 
